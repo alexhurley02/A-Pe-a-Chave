@@ -17,21 +17,13 @@ const pilares = [
     result: 'Validação e respeito instantâneo em mesas de decisão.'
   },
   {
-    title: (
-      <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm">
-        Linguagem de Comandante
-      </span>
-    ),
+    title: 'Linguagem de Comandante',
     desc: 'Substituição da fala descritiva e reativa por uma linguagem de decisão, focada em impacto e resolutividade.',
     icon: Zap,
     result: 'Eliminação da percepção de senioridade júnior ou técnica.'
   },
   {
-    title: (
-      <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm">
-        Posicionamento e Cadência
-      </span>
-    ),
+    title: 'Posicionamento e Cadência',
     desc: (
       <>
         Ajuste de tom de voz, ritmo e presença verbal para projetar autoridade incontestável.
@@ -41,21 +33,13 @@ const pilares = [
     result: 'Reconhecimento de liderança pela simples presença verbal.'
   },
   {
-    title: (
-      <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm">
-        Navegação Intercultural
-      </span>
-    ),
+    title: 'Navegação Intercultural',
     desc: 'Decodificação dos códigos invisíveis da hierarquia executiva anglo-saxônica e americana.',
     icon: Globe,
     result: 'Trânsito fluido e influente em qualquer ambiente global.'
   },
   {
-    title: (
-      <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm">
-        Aplicação Contextual
-      </span>
-    ),
+    title: 'Aplicação Contextual',
     desc: 'Transferência imediata dos frameworks para sua agenda real: de e-mails críticos a apresentações para o Board.',
     icon: Users,
     result: 'Resultados visíveis no fechamento do seu próximo trimestre.'
@@ -134,7 +118,7 @@ const PillarItem: React.FC<{ p: any, i: number, dark: boolean }> = ({ p, i, dark
         </div>
         
         <div className={`flex ${i % 2 === 0 ? 'md:justify-end' : 'justify-start'} items-center gap-4`}>
-           <div className="text-[9px] font-bold tracking-[0.3em] uppercase text-executive-bordeaux">Objetivo</div>
+           <div className="text-[9px] font-bold tracking-[0.3em] uppercase text-black">Objetivo</div>
            <div className={`text-[11px] font-bold ${textColor} tracking-wider italic`}>{p.result}</div>
         </div>
       </div>
@@ -152,15 +136,15 @@ export const HowItWorks = () => {
     ];
 
     return (
-        <div className="space-y-16">
+        <div className="space-y-12">
             {steps.map((s, i) => (
-                <div key={i} className="group cursor-default">
+                <div key={i} className="group cursor-default p-8 transition-all duration-500 hover:bg-white rounded-sm border border-transparent hover:border-executive-bordeaux shadow-2xl">
                     <div className="flex items-center gap-4 mb-4">
-                        <span className="text-[10px] font-bold text-white group-hover:bg-executive-bordeaux group-hover:px-2 group-hover:py-0.5 transition-all duration-500 rounded-sm">Etapa 0{i+1}</span>
+                        <span className="text-[10px] font-bold text-white bg-executive-bordeaux px-3 py-1 transition-all duration-500 rounded-sm block">Etapa 0{i+1}</span>
                         <div className="h-[1px] w-8 bg-white/40 group-hover:w-16 group-hover:bg-executive-bordeaux transition-all duration-700"></div>
                     </div>
-                    <h4 className="text-xl font-bold mb-2 uppercase tracking-[0.2em] text-white group-hover:text-executive-bordeaux transition-colors duration-300">{s.title}</h4>
-                    <p className="text-white font-bold text-sm tracking-wide">{s.text}</p>
+                    <h4 className="text-xl font-extrabold mb-3 uppercase tracking-[0.2em] text-white group-hover:text-black transition-colors duration-300">{s.title}</h4>
+                    <p className="text-white font-medium text-sm tracking-wide group-hover:text-black transition-colors duration-300 leading-relaxed">{s.text}</p>
                 </div>
             ))}
         </div>

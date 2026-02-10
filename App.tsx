@@ -83,7 +83,7 @@ const App: React.FC = () => {
               <span className="text-xl md:text-2xl font-bold tracking-tighter text-white uppercase flex items-center leading-none">
                 A Peça-Chave<span className="text-[10px] ml-1 opacity-40">™</span>
               </span>
-              <span className="text-[8px] font-bold tracking-[0.2em] uppercase text-executive-bordeaux leading-none mt-1">Alexandra Hurley</span>
+              <span className="text-[8px] font-bold tracking-[0.2em] uppercase text-white leading-none mt-1">Alexandra Hurley</span>
             </div>
           </div>
           
@@ -150,7 +150,7 @@ const App: React.FC = () => {
               Onde a fluência se torna <span className="border-b-[4px] border-executive-bordeaux pb-2">autoridade.</span>
             </h1>
             <p className="text-xl md:text-2xl text-white font-thin leading-relaxed mb-16 max-w-2xl">
-              Para líderes globais que já dominam o idioma, mas buscam o <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">enquadramento estratégico</span> e a <span className="font-bold">precisão</span> necessárias para influenciar decisões no topo.
+              Para líderes globais que já dominam o idioma, mas buscam o <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">enquadramento estratégico</span> e a <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">precisão</span> necessárias para influenciar decisões no topo.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
@@ -185,7 +185,7 @@ const App: React.FC = () => {
                   No C-Level, falar inglês é apenas a "estaca zero". A verdadeira barreira para executivos brasileiros não é o vocabulário, mas a <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">arquitetura da mensagem</span>.
                 </p>
                 <p>
-                  Sem o enquadramento (framing) e a pragmática corretos, líderes altamente competentes soam reativos, inseguros ou excessivamente descritivos.
+                  Sem o enquadramento (framing) e a pragmática corretos, líderes altamente competentes soam reativos, insecure ou excessivamente descritivos.
                 </p>
                 <p>
                   A Peça-Chave™ atua exatamente nesta lacuna: transformando sua competência técnica em <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">presença de comando</span> através de uma comunicação desenhada para o alto escalão.
@@ -231,16 +231,16 @@ const App: React.FC = () => {
                   <p className="text-white text-xl font-thin mb-12">
                     Nossa mentoria elimina a teoria e foca na intervenção direta sobre a sua realidade profissional imediata.
                   </p>
-                  <div className="grid grid-cols-1 gap-10">
+                  <div className="grid grid-cols-1 gap-4">
                     {[
                       'Auditoria de Impacto e Percepção de Voz',
                       'Curadoria de Frameworks para Reuniões Críticas',
                       'Simulações Intensivas de Cenários de Pressão'
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-6 group cursor-default">
-                        <span className="bg-executive-bordeaux text-white px-2 py-0.5 text-[10px] font-bold shrink-0">0{i+1}</span>
-                        <div className="h-[1px] flex-grow bg-white/20 group-hover:bg-executive-bordeaux transition-all"></div>
-                        <span className="text-sm font-thin tracking-[0.3em] uppercase text-white group-hover:bg-executive-bordeaux group-hover:px-3 group-hover:py-1 transition-all duration-300">{item}</span>
+                      <div key={i} className="group cursor-default w-fit">
+                        <span className="text-sm font-thin tracking-[0.3em] uppercase text-white group-hover:text-white group-hover:font-extrabold group-hover:bg-executive-bordeaux group-hover:px-6 group-hover:py-3 transition-all duration-300 block">
+                          {item}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -309,9 +309,10 @@ const App: React.FC = () => {
             <button className="group relative px-20 py-8 bg-white text-black hover:bg-executive-bordeaux hover:text-white transition-all duration-700 rounded-sm font-bold shadow-[0_0_50px_rgba(255,255,255,0.1)]">
                <span className="text-[12px] font-bold tracking-[0.4em] uppercase">Agendar Sessão Diagnóstica</span>
             </button>
-            <div className="mt-32 flex justify-center gap-16 text-white text-[10px] font-bold tracking-[0.5em] uppercase">
-              <span className="hover:text-executive-bordeaux transition-colors cursor-pointer border-b-2 border-white pb-1">LinkedIn</span>
-              <span className="hover:text-executive-bordeaux transition-colors cursor-pointer border-b-2 border-white pb-1">Direct WhatsApp</span>
+            <div className="mt-32 flex flex-wrap justify-center gap-8 md:gap-16 text-white text-[10px] font-bold tracking-[0.5em] uppercase">
+              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">LinkedIn</span>
+              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">Direct WhatsApp</span>
+              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">Instagram</span>
             </div>
           </div>
         </section>

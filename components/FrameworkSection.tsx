@@ -132,11 +132,11 @@ export const FrameworkSection: React.FC = () => {
 
             {/* C.O.D.E Central Node with Hover Effect */}
             <motion.div 
-              whileHover={{ backgroundColor: '#800020', borderColor: '#800020' }}
-              className="relative z-10 bg-white border-[2px] border-black p-8 rounded-full shadow-[0_0_40px_rgba(0,0,0,0.05)] transition-colors duration-300 group cursor-default"
+              whileHover={{ scale: 1.1 }}
+              className="relative z-10 bg-executive-bordeaux p-8 rounded-full shadow-[0_0_40px_rgba(128,0,32,0.3)] transition-all duration-300 group cursor-default border-none"
             >
-                <span className="text-4xl font-bold tracking-widest text-black group-hover:text-white transition-colors duration-300">C.O.D.E.</span>
-                <span className="text-[8px] absolute -top-2 -right-4 opacity-40 text-black group-hover:text-white">™</span>
+                <span className="text-4xl font-bold tracking-widest text-white">C.O.D.E.</span>
+                <span className="text-[8px] absolute -top-2 -right-4 opacity-70 text-white">™</span>
             </motion.div>
 
             {/* Connecting Lines & Pillar Nodes */}
@@ -162,21 +162,21 @@ export const FrameworkSection: React.FC = () => {
                                 transformOrigin: '0% 50%'
                             }}
                         />
-                        {/* Pillar Node - White Background, Black Text */}
+                        {/* Pillar Node - Interaction update: bordô background and white bold text on hover/active */}
                         <motion.button
                             onClick={() => setActiveTab(idx)}
                             whileHover={{ scale: 1.15 }}
-                            className={`absolute w-16 h-16 rounded-full border flex items-center justify-center transition-all duration-500 z-10 text-black font-bold shadow-xl ${
+                            className={`absolute w-16 h-16 rounded-full border flex items-center justify-center transition-all duration-500 z-10 font-bold shadow-xl ${
                               activeTab === idx 
-                              ? 'bg-white border-executive-bordeaux border-[3px] scale-110 shadow-[0_0_25px_rgba(0,0,0,0.1)]' 
-                              : 'bg-white border-black/20 hover:border-executive-bordeaux'
+                              ? 'bg-executive-bordeaux text-white border-executive-bordeaux border-[3px] scale-110 shadow-[0_0_25px_rgba(128,0,32,0.3)]' 
+                              : 'bg-white text-black border-black/20 hover:bg-executive-bordeaux hover:text-white hover:border-executive-bordeaux'
                             }`}
                             style={{ 
                                 x: `calc(${x}px)`,
                                 y: `calc(${y}px)`
                             }}
                         >
-                            <span className="text-2xl font-bold tracking-tighter">{item.letter}</span>
+                            <span className="text-2xl font-extrabold tracking-tighter transition-colors duration-500">{item.letter}</span>
                         </motion.button>
                     </React.Fragment>
                 );
@@ -205,17 +205,17 @@ export const FrameworkSection: React.FC = () => {
                        </div>
                        <div>
                           <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-1 uppercase">{codeData[activeTab].name}</h3>
-                          <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-executive-bordeaux">{codeData[activeTab].subtitle}</p>
+                          <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white">{codeData[activeTab].subtitle}</p>
                        </div>
                     </div>
 
-                    <p className="text-xl font-bold mb-10 leading-relaxed italic border-l-4 border-executive-bordeaux pl-6">
+                    <p className="text-xl font-bold mb-10 leading-relaxed italic border-l-4 border-white pl-6">
                       "{codeData[activeTab].content.desc}"
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
                        <div>
-                          <h4 className="text-[9px] font-bold tracking-[0.3em] uppercase mb-6 text-white/40">O Mentorado Desenvolve</h4>
+                          <h4 className="inline-block bg-executive-bordeaux text-white px-3 py-1 text-[9px] font-bold tracking-[0.3em] uppercase mb-6 rounded-sm">O Mentorado Desenvolve</h4>
                           <ul className="space-y-4">
                              {codeData[activeTab].content.points.map((p, i) => (
                                <li key={i} className="flex gap-3 text-sm font-bold">
@@ -227,7 +227,7 @@ export const FrameworkSection: React.FC = () => {
                        </div>
                        <div className="space-y-8">
                           <div>
-                            <h4 className="text-[9px] font-bold tracking-[0.3em] uppercase mb-4 text-white/40">Resultado Prático</h4>
+                            <h4 className="inline-block bg-executive-bordeaux text-white px-3 py-1 text-[9px] font-bold tracking-[0.3em] uppercase mb-4 rounded-sm">Resultado Prático</h4>
                             <p className="text-sm font-bold">{codeData[activeTab].content.result}</p>
                           </div>
                           <div className="p-6 bg-white text-black rounded-sm">
