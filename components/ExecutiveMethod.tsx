@@ -153,30 +153,51 @@ export const HowItWorks = () => {
 
 export const Formats: React.FC<{ dark?: boolean }> = ({ dark = true }) => {
     const formats = [
-        { title: 'Individual Advisory', desc: 'Acompanhamento exclusivo e altamente customizado para executivos de alta performance.' },
-        { title: 'C-Level Mentorship', subtitle: 'Lista de Espera', desc: 'Programa intensivo para transição rumo a conselhos e posições globais.' },
-        { title: 'Strategic Consulting', desc: 'Intervenções pontuais para preparação de negociações críticas ou M&A.' },
-        { title: 'Corporate Solutions', desc: (
-          <>
-            Projetos customizados para capacitar times de liderança em <span className="font-bold border-b-2 border-executive-bordeaux pb-0.5">autoridade global</span>.
-          </>
-        )}
+        { 
+            title: 'Individual Advisory', 
+            desc: 'Acompanhamento exclusivo e altamente customizado para executivos de alta performance buscando refinamento imediato.' 
+        },
+        { 
+            title: 'C-Level Mentorship', 
+            subtitle: 'Lista de Espera', 
+            desc: 'Programa intensivo de 12 semanas focado em transição rumo a conselhos e posições globais de comando.' 
+        },
+        { 
+            title: 'Strategic Consulting', 
+            desc: 'Intervenções pontuais e críticas para preparação de negociações de alto risco ou fusões e aquisições.' 
+        },
+        { 
+            title: 'Corporate Solutions', 
+            desc: 'Treinamento tático de elite para capacitar times de diretoria em arquitetura de poder e autoridade global.' 
+        }
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {formats.map((f, i) => (
-                <div key={i} className={`flex flex-col group p-8 bg-white text-black border border-transparent hover:border-executive-bordeaux transition-all duration-700 rounded-sm shadow-xl`}>
-                    <h4 className={`text-sm font-bold mb-4 uppercase tracking-[0.3em] text-black`}>{f.title}</h4>
-                    {f.subtitle && (
-                        <span className="text-[8px] font-bold tracking-widest uppercase text-executive-bordeaux mb-6 block font-bold">
-                            {f.subtitle}
-                        </span>
-                    )}
-                    <div className={`text-xs font-bold leading-relaxed mb-auto text-black`}>
+                <div key={i} className={`relative flex flex-col items-center text-center group p-10 bg-white text-black border border-black/5 hover:border-executive-bordeaux/30 transition-all duration-700 rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-2xl`}>
+                    
+                    {/* Badge for Exclusivity */}
+                    <div className="h-12 mb-4 flex items-center justify-center">
+                        {f.subtitle ? (
+                            <span className="text-[8px] font-bold tracking-[0.3em] uppercase bg-executive-bordeaux text-white px-3 py-1 rounded-full">
+                                {f.subtitle}
+                            </span>
+                        ) : (
+                            <div className="w-1 h-1 bg-executive-bordeaux/20 rounded-full"></div>
+                        )}
+                    </div>
+
+                    <h4 className="text-sm font-extrabold mb-6 uppercase tracking-[0.3em] text-black h-12 flex items-center">
+                        {f.title}
+                    </h4>
+
+                    <div className="text-xs font-bold leading-relaxed text-black/70 mb-12 max-w-[200px]">
                         {f.desc}
                     </div>
-                    <div className={`mt-12 h-[2px] w-6 bg-black/20 group-hover:w-full group-hover:bg-executive-bordeaux transition-all duration-1000`}></div>
+
+                    {/* Animated Accent Line - Expands from Center */}
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] w-0 bg-executive-bordeaux group-hover:w-full transition-all duration-700 ease-in-out"></div>
                 </div>
             ))}
         </div>

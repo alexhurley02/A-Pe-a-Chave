@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { AbstractScene } from './components/AbstractScene';
 import { PillarTimeline, HowItWorks, Formats } from './components/ExecutiveMethod';
 import { FrameworkSection } from './components/FrameworkSection';
-import { Menu, X, ChevronRight, Copy, Check } from 'lucide-react';
+import { Menu, X, ChevronRight, Copy, Check, Quote, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Logo = ({ className = "h-8 w-auto" }: { className?: string }) => (
@@ -16,30 +16,106 @@ const Logo = ({ className = "h-8 w-auto" }: { className?: string }) => (
   </svg>
 );
 
-const SectionTitle = ({ subtitle, title, dark = true }: { subtitle: string, title: React.ReactNode, dark?: boolean }) => (
-  <div className="mb-12">
+const SectionTitle = ({ subtitle, title, dark = true, centered = false }: { subtitle: string, title: React.ReactNode, dark?: boolean, centered?: boolean }) => (
+  <div className={`mb-12 ${centered ? 'text-center flex flex-col items-center' : ''}`}>
     <motion.div 
-      initial={{ opacity: 0, x: -10 }}
+      initial={{ opacity: 0, x: centered ? 0 : -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       className="flex items-center gap-4 mb-4"
     >
-      <div className="w-8 h-[1px] bg-executive-bordeaux"></div>
+      {!centered && <div className="w-8 h-[1px] bg-executive-bordeaux"></div>}
       <span className="bg-executive-bordeaux text-white px-3 py-1 text-[10px] font-bold tracking-[0.4em] uppercase">
         {subtitle}
       </span>
+      {centered && <div className="w-8 h-[1px] bg-executive-bordeaux"></div>}
     </motion.div>
     <motion.h2 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1 }}
-      className={`text-3xl md:text-5xl font-bold tracking-tight leading-tight ${dark ? 'text-white' : 'text-black'}`}
+      className={`text-3xl md:text-5xl font-bold tracking-tight leading-tight ${dark ? 'text-white' : 'text-black'} ${centered ? 'max-w-2xl' : ''}`}
     >
       {title}
     </motion.h2>
   </div>
 );
+
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      name: "Ricardo S.",
+      role: "CEO — Global Tech Logistics",
+      text: "A mentoria da Alexandra não é sobre inglês, é sobre poder. Aprendi a ocupar espaços em reuniões globais onde antes eu apenas 'traduzia' minhas ideias.",
+      mediaType: 'image',
+      mediaUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      name: "Marina B.",
+      role: "VP de Operações — FinTech New York",
+      text: "O framework C.O.D.E mudou minha forma de reportar ao Board. A precisão e a cadência que a Alexandra ensina trazem uma autoridade que eu não conseguia atingir sozinha.",
+      mediaType: 'video',
+      mediaUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      name: "Gustavo L.",
+      role: "Board Member — Multinacional de Energia",
+      text: "A intervenção estratégica na minha comunicação transformou negociações complexas em processos fluidos. A Peça-Chave™ é o diferencial entre falar e comandar.",
+      mediaType: 'image',
+      mediaUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800',
+    }
+  ];
+
+  return (
+    <section className="py-40 bg-white border-t border-black/5">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="mb-20">
+          <SectionTitle dark={false} subtitle="Resultados Reais" title="Endossos Estratégicos" centered={true} />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {testimonials.map((t, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="relative flex flex-col border border-black/5 bg-neutral-50 rounded-sm hover:shadow-2xl transition-all duration-500 group overflow-hidden"
+            >
+              <div className="relative aspect-video w-full overflow-hidden bg-black grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img 
+                  src={t.mediaUrl} 
+                  alt={t.name} 
+                  className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+                {t.mediaType === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 bg-executive-bordeaux text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                      <Play size={24} fill="currentColor" />
+                    </div>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+
+              <div className="p-10 flex flex-col flex-1">
+                <Quote className="text-executive-bordeaux/20 mb-6" size={32} />
+                <p className="text-black text-lg font-bold leading-relaxed mb-10 italic flex-1">
+                  "{t.text}"
+                </p>
+                <div className="pt-6 border-t border-black/5">
+                  <h4 className="text-black font-extrabold text-sm uppercase tracking-widest mb-1">{t.name}</h4>
+                  <p className="text-executive-bordeaux text-[10px] font-bold tracking-[0.2em] uppercase">{t.role}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -168,14 +244,10 @@ const App: React.FC = () => {
             </div>
           </motion.div>
         </div>
-        
-        <div className="absolute bottom-12 left-12 z-20 opacity-20">
-           <div className="w-[1px] h-20 bg-gradient-to-b from-executive-bordeaux to-transparent"></div>
-        </div>
       </header>
 
       <main>
-        {/* Bloco 1: Problema (Preto) */}
+        {/* Bloco 1: Problema */}
         <section id="metodo" className="py-40 bg-black border-y border-white/5">
           <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-24 items-center">
             <div className="md:col-span-7">
@@ -183,9 +255,6 @@ const App: React.FC = () => {
               <div className="space-y-8 text-xl text-white font-thin leading-relaxed">
                 <p>
                   No C-Level, falar inglês é apenas a "estaca zero". A verdadeira barreira para executivos brasileiros não é o vocabulário, mas a <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">arquitetura da mensagem</span>.
-                </p>
-                <p>
-                  Sem o enquadramento (framing) e a pragmática corretos, líderes altamente competentes soam reativos, insecure ou excessivamente descritivos.
                 </p>
                 <p>
                   A Peça-Chave™ atua exatamente nesta lacuna: transformando sua competência técnica em <span className="bg-executive-bordeaux text-white px-2 py-0.5 rounded-sm font-bold">presença de comando</span> através de uma comunicação desenhada para o alto escalão.
@@ -206,56 +275,33 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Bloco 1.5: Framework C.O.D.E. (Mindmap & Rolodex) */}
         <FrameworkSection />
 
-        {/* Bloco 2: Pilares (BRANCO - TIMELINE) */}
+        {/* Bloco 2: Pilares */}
         <section id="pilares" className="py-40 bg-white text-black">
           <div className="container mx-auto px-6 md:px-12 text-center max-w-4xl mx-auto mb-32">
-            <SectionTitle dark={false} subtitle="A Estrutura do Método" title="Os 6 Protocolos da Autoridade Executiva" />
-            <p className="text-black text-lg font-bold">
-              Uma abordagem pragmática focada em resultados reais, negociações complexas e apresentações de impacto global.
-            </p>
+            <SectionTitle dark={false} subtitle="A Estrutura do Método" title="Os 6 Protocolos da Autoridade Executiva" centered={true} />
           </div>
           <div className="container mx-auto px-6 md:px-12">
             <PillarTimeline dark={false} />
           </div>
         </section>
 
-        {/* Bloco 3: Como Funciona (Preto) */}
-        <section className="py-40 bg-black border-y border-white/5">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
-               <div className="flex flex-col justify-center">
-                  <SectionTitle subtitle="Execução" title={<>Da análise de contexto à <span className="font-bold italic text-white underline decoration-executive-bordeaux">entrega impecável</span>.</>} />
-                  <p className="text-white text-xl font-thin mb-12">
-                    Nossa mentoria elimina a teoria e foca na intervenção direta sobre a sua realidade profissional imediata.
-                  </p>
-                  <div className="grid grid-cols-1 gap-4">
-                    {[
-                      'Auditoria de Impacto e Percepção de Voz',
-                      'Curadoria de Frameworks para Reuniões Críticas',
-                      'Simulações Intensivas de Cenários de Pressão'
-                    ].map((item, i) => (
-                      <div key={i} className="group cursor-default w-fit">
-                        <span className="text-sm font-thin tracking-[0.3em] uppercase text-white group-hover:text-white group-hover:font-extrabold group-hover:bg-executive-bordeaux group-hover:px-6 group-hover:py-3 transition-all duration-300 block">
-                          {item}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-               </div>
-               <HowItWorks />
-            </div>
-          </div>
+        {/* Bloco 3: Formatos de Atendimento - Ajustado ao modelo clássico */}
+        <section className="py-40 bg-white border-t border-black/5 text-black">
+           <div className="container mx-auto px-6 md:px-12 mb-24">
+              <SectionTitle dark={false} subtitle="Disponibilidade" title="Formatos de Atendimento" centered={true} />
+           </div>
+           <div className="container mx-auto px-6 md:px-12">
+              <Formats dark={false} />
+           </div>
         </section>
 
-        {/* Bloco 4: Sobre Alexandra (BRANCO) */}
+        {/* Bloco 4: Sobre Alexandra */}
         <section id="sobre" className="py-40 bg-white text-black relative">
            <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-24 items-center">
               <div className="md:col-span-5">
                  <div className="relative">
-                    <div className="absolute -top-10 -left-10 w-40 h-40 border-t border-l border-executive-bordeaux/40"></div>
                     <div className="aspect-[4/5] bg-neutral-100 border border-black/5 grayscale hover:grayscale-0 transition-all duration-1000">
                        <div className="absolute inset-0 flex items-center justify-center text-black/5 font-bold text-8xl tracking-tighter">AH</div>
                     </div>
@@ -267,55 +313,27 @@ const App: React.FC = () => {
                   <p>
                     Intérprete Judicial Federal e Estadual certificada nos Estados Unidos, Alexandra atua no ápice da precisão linguística exigida pelo <span className="text-black font-extrabold underline decoration-executive-bordeaux decoration-2 underline-offset-4">Departamento de Justiça Americano</span>.
                   </p>
-                  <p>
-                    Com mais de 30 anos de residência e prática executiva nos EUA, sua expertise foi forjada onde cada palavra carrega um peso jurídico e estratégico. Alexandra traz o rigor do tribunal para a sala de reuniões.
-                  </p>
-                  <p>
-                    Mestra em Comunicação pela <span className="text-black font-extrabold">Boston University</span>, ela decodifica as nuances de poder que diferenciam os líderes que apenas participam daqueles que comandam o rumo dos negócios.
-                  </p>
                 </div>
-                
-                <button 
-                  onClick={handleCopyBio}
-                  className="flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase text-black hover:text-executive-bordeaux transition-all border-b-2 border-black pb-2 group font-bold"
-                >
-                  {copied ? <Check size={14} className="text-executive-bordeaux" /> : <Copy size={14} />}
-                  <span>{copied ? 'Copiado para o Clipboard' : 'Copiar Perfil Estratégico'}</span>
+                <button onClick={handleCopyBio} className="flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase text-black hover:text-executive-bordeaux transition-all border-b-2 border-black pb-2 group font-bold">
+                  {copied ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copied ? 'Copiado' : 'Copiar Perfil Estratégico'}</span>
                 </button>
               </div>
            </div>
         </section>
 
-        {/* Bloco 5: Formatos (Preto) */}
-        <section className="py-40 bg-black border-y border-white/5 text-white">
-           <div className="container mx-auto px-6 md:px-12 text-center mb-32">
-              <span className="bg-executive-bordeaux text-white px-4 py-2 text-[10px] font-bold tracking-[0.5em] uppercase block mb-6 w-fit mx-auto">Disponibilidade Exclusiva</span>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">Formatos de Atendimento</h2>
-              <div className="w-16 h-[1px] bg-executive-bordeaux mx-auto mt-8"></div>
-           </div>
-           <div className="container mx-auto px-6 md:px-12">
-              <Formats dark={true} />
-           </div>
-        </section>
-
-        {/* Bloco 6: CTA Final (Preto) */}
+        {/* CTA Final */}
         <section id="contato" className="py-60 bg-black text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-executive-bordeaux/10 rounded-full blur-[120px] pointer-events-none"></div>
           <div className="container mx-auto px-6 max-w-4xl relative z-10">
-            <h2 className="text-6xl md:text-9xl font-bold mb-12 tracking-tighter">Domine o <span className="font-bold underline decoration-executive-bordeaux underline-offset-[20px] decoration-4 text-white">palco global.</span></h2>
-            <p className="text-white text-2xl font-thin mb-20 max-w-2xl mx-auto leading-relaxed">
-              A disponibilidade para mentorias individuais é limitada para garantir o rigor técnico. Inicie seu processo de seleção para a agenda atual.
-            </p>
+            <h2 className="text-6xl md:text-9xl font-bold mb-12 tracking-tighter text-white">Domine o <span className="font-bold underline decoration-executive-bordeaux underline-offset-[20px] decoration-4 text-white">palco global.</span></h2>
             <button className="group relative px-20 py-8 bg-white text-black hover:bg-executive-bordeaux hover:text-white transition-all duration-700 rounded-sm font-bold shadow-[0_0_50px_rgba(255,255,255,0.1)]">
                <span className="text-[12px] font-bold tracking-[0.4em] uppercase">Agendar Sessão Diagnóstica</span>
             </button>
-            <div className="mt-32 flex flex-wrap justify-center gap-8 md:gap-16 text-white text-[10px] font-bold tracking-[0.5em] uppercase">
-              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">LinkedIn</span>
-              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">Direct WhatsApp</span>
-              <span className="hover:bg-executive-bordeaux hover:text-white px-4 py-2 transition-all duration-300 rounded-sm cursor-pointer border-b-2 border-white/20 hover:border-executive-bordeaux">Instagram</span>
-            </div>
           </div>
         </section>
+
+        {/* Depoimentos */}
+        <TestimonialsSection />
       </main>
 
       <footer className="bg-black py-20 border-t border-white/10">
@@ -325,10 +343,6 @@ const App: React.FC = () => {
               <div className="text-[9px] font-bold tracking-[0.4em] uppercase text-white font-bold">
                  © {new Date().getFullYear()} A Peça-Chave™ — Alexandra Hurley
               </div>
-           </div>
-           <div className="flex gap-8 items-center">
-              <div className="w-4 h-[1px] bg-executive-bordeaux"></div>
-              <div className="text-[9px] font-bold tracking-[0.4em] uppercase text-white font-bold">Boston, MA — São Paulo, SP</div>
            </div>
         </div>
       </footer>
